@@ -2,18 +2,22 @@
 declare(strict_types=1);
 
 
-namespace App\Core;
+namespace App;
 
 use App\Core\Controller;
+use App\Core\Configuration;
 
 
 
+/**
+ *	Application is the main class for the whole MVC
+ */
 class Application
 {
 	/**
 	 *	@var string|Controller $controller
 	 */
-	protected string|Controller $controller = "home";
+	protected string|Controller $controller = "App\\Controllers\\HomeController";
 
 	/**
 	 *	@var string $method
@@ -32,15 +36,24 @@ class Application
 	 */
 	public function __construct()
 	{
-		$url = $this->parseUrl();
+		echo "<pre>"; print_r($_GET); echo "</pre>";
+		$this->router();
 
+		Configuration::load();
+	}
+
+	private function router()
+	{
+		$url = $this->parseUrl();
+		
 		$controllerClass = 'App\\Controllers\\' . ucfirst($url[0]) . 'Controller';
 		if (class_exists($controllerClass)) {
-            $this->controller = $controllerClass;
-            unset($url[0]);
+			$this->controller = $controllerClass;
+			unset($url[0]);
 		}
 
 		$this->controller = new $this->controller;
+		print_r($this->controller);
 
 		if (isset($url[1])) {
 			if (method_exists($this->controller, $url[1])) {

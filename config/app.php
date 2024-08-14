@@ -1,7 +1,7 @@
 <?php
 return [
 	'App' => [
-		'namespace' => 'App',
+		'namespace' => 'App'
 	],
 
 	'Datasources' => [
@@ -14,5 +14,13 @@ return [
 			'password' => 'SECRET',
 			'database' => 'MY_APP'
 		]
+	],
+
+	'Security' => [
+		'password' => [
+			'salt' => "PASSWORD_SALT",
+			'pepper' => "PASSWORD_PEPPER",
+			'encryption'=> CRYPT_SHA256
+		]
 	]
-]
+];

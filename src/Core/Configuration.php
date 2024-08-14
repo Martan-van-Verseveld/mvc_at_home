@@ -2,7 +2,8 @@
 declare(strict_types=1);
 
 
-namespace App\Core
+namespace App\Core;
+
 
 
 /**
@@ -10,7 +11,8 @@ namespace App\Core
  *	
  *	A class for reading and writing from and to the App configuration.
  */
-Class Configuration {
+class Configuration
+{
 	/**
 	 *	@var array|null $config 
 	 */
@@ -18,7 +20,12 @@ Class Configuration {
 
 	
 	public static function load() {
-		$configDir = getenv('WWW_ROOT') . "/config/";
+		$configDir = dirname(dirname(__DIR__)) . "/config/";
+		
+		$config_app = require $configDir . "/app.php";
+		$config_applocal = require $configDir . "/app.local.php";
+
+		self::$config = array_merge($config_app, $config_applocal);
 	}
 
 

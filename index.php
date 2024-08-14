@@ -4,6 +4,6 @@
  *	@started	2024-08-14
  */
 
-require "webroot". DIRECTORY_SEPARATOR ."index.php"
+header("HTTP/1.1 404 Not Found");
 
 ?>

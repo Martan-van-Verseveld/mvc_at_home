@@ -1,4 +1,7 @@
 {
+    "name": "composer/mvc_at_home",
+    "description": "\"Mom, can we get an MVC?\", \"No we have an MVC at home.\"",
+
     "autoload": {
         "psr-4": {
             "App\\": "src/"

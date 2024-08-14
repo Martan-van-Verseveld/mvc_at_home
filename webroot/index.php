@@ -5,9 +5,7 @@
  */
 
 require dirname(__DIR__) . '/vendor/autoload.php';
-//require dirname(__DIR__). "/src/init.php";
 
-
-use App\Core\Application;
+use App\Application;
 
 $app = new Application;
